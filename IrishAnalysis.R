@@ -1,3 +1,10 @@
+##---------------------------------------------------------------------------##
+
+# Douglas Masotti
+# x18151493
+
+##---------------------------------------------------------------------------##
+
 
 # Load the libraries
 library(tidyverse)
@@ -101,6 +108,8 @@ pie(speaker_by_age$sum, labels = speaker_by_age$Age.Group)
 
 
 
+
+
 ##---------------------------------------------------------------------------##
 # Read csv file 
 SE <- read.csv("SocioEconomic.csv")
@@ -110,23 +119,20 @@ head(SE)
 ##---------------------------------------------------------------------------##
 # Null/Alternative hypothesis
 # Pearson's Chi-squared Test
-flee <-table(SE$Population,SE$Irish.Speakers)
-chisq.test(flee) 
+chiSquared <-table(SE$Population,SE$Irish.Speakers)
+chisq.test(chiSquared) 
 
 
 ##---------------------------------------------------------------------------##
-#Krustal Test
-kruskal.test(SE$SocioEconomic.Class ~ SE$Irish.Speakers, data = SE)
+#Krustal Test  - I DECIDED TO NOT USE
+#kruskal.test(SE$SocioEconomic.Class ~ SE$Irish.Speakers, data = SE)
+
 
 
 ##---------------------------------------------------------------------------##
 #Regression
 #The predictor vector year
 x <- c(2011,2016)
-
-
-sum(SE$Irish.Speakers)
-sum(SE$Non.Irish.Speakers)
 
 # The response vector (sum of Irish Speakers)
 y <- c(7362700,7300336)
@@ -174,8 +180,7 @@ head(SE)
 
 #Plot
 ggplot() + geom_point(aes(x=SE$Irish.Speakers,y=SE$Non.Irish.Speakers,),color=3) +
-  geom_line(aes(x=SE$Irish.Speakers,y=SE$pd),color=2) + ggtitle("Decision Tree example")
-+ xlab("Irish Speaker Perc") + ylab("Population") + theme(plot.title = element_text(hjust=0.5)) +theme_bw()
+  geom_line(aes(x=SE$Irish.Speakers,y=SE$pd),color=2) + ggtitle("Decision Tree")  + xlab("Irish Speaker Perc") + ylab("Population") + theme(plot.title = element_text(hjust=0.5)) +theme_bw()
 
 # Correaltion Analysis
 #install.packages("psych")
